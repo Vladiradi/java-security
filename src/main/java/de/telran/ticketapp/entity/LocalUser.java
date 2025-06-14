@@ -17,9 +17,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.stereotype.Service;
 
-/**
- *
- */
+
 
 @Entity
 @Table(name = "local_users")
