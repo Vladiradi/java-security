@@ -12,6 +12,8 @@ import java.util.List;
 class TicketServiceImplTest {
     @Autowired
     private TicketService ticketService;
+    private Ticket ticket;
+
 
     @Test
     void getAllAndCreateTest() {
