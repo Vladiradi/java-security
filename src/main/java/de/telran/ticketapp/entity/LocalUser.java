@@ -20,7 +20,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.stereotype.Service;
 
-
+import java.util.ArrayList;
 
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -45,8 +45,8 @@ public class LocalUser {
     private String password;
     private String postAddress;
 
-    @OneToMany(cascade = cascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "local_user_id")
-    @ToString.Exclude
     private Set<Ticket> ticket = new HashSet<>();
+
 }
