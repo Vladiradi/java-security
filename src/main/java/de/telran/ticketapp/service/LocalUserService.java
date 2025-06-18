@@ -4,7 +4,7 @@ import de.telran.ticketapp.entity.LocalUser;
 
 import java.util.List;
 
-public interface LocalUserService {
+public interface  LocalUserService {
 
     List<LocalUser> getAll();
 

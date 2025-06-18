@@ -29,4 +29,6 @@ public class Ticket {
     private String title;
 
     private double price;
+
+
 }

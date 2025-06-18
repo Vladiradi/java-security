@@ -1,11 +1,14 @@
 package de.telran.ticketapp.entity;
 
+import jakarta.persistence.Cache;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,27 +22,31 @@ import org.springframework.stereotype.Service;
 
 
 
+
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "local_users")
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
-@Builder
 @AllArgsConstructor
+@Builder
+@ToString
 public class LocalUser {
 
-    @Id // указывает что это поле первичный ключ
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // задает автогенерацию значения поля
     @EqualsAndHashCode.Include
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // задает автогенерацию значения поля
     private Long id;
 
     private String name;
-
     private String surname;
-
     private String email;
-
     private String password;
+    private String postAddress;
 
-    private String postAddress;   // post_address  // postAddress
+    @OneToMany(cascade = cascadeType.ALL)
+    @JoinColumn(name = "local_user_id")
+    @ToString.Exclude
+    private Set<Ticket> ticket = new HashSet<>();
 }
