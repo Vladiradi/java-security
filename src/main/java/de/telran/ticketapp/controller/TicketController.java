@@ -1,6 +1,5 @@
 package de.telran.ticketapp.controller;
-
-
+import de.telran.ticketapp.entity.Ticket;
 import de.telran.ticketapp.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +16,6 @@ public class TicketController {
 
     @GetMapping
     public List<Ticket> getAll() {
-        return ticketService.getAllTickets();
+        return ticketService.getAll();
     }
-
-
 }

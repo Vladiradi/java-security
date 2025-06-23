@@ -9,18 +9,20 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TicketServiceImpl implements TicketService {
+public class TicketServiceImpl implements TicketService{
 
     @Autowired
     private TicketRepository ticketRepository;
 
     @Override
     public List<Ticket> getAll() {
+
         return ticketRepository.findAll();
     }
 
     @Override
     public Ticket create(Ticket ticket) {
+
         return ticketRepository.save(ticket);
     }
 
@@ -28,5 +30,10 @@ public class TicketServiceImpl implements TicketService {
     public Ticket getById(Long id) {
         return ticketRepository.findById(id)
                 .orElseThrow(() -> new TicketNotFoundException("Ticket with id " + id + " not found"));
+    }
+
+    @Override
+    public Ticket getByTitle(String title) {
+        return null;
     }
 }

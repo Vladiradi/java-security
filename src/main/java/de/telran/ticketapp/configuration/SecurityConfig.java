@@ -1,0 +1,28 @@
+//
+//
+//package de.telran.ticketapp.configuration;
+//
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Configuration;
+//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+//import org.springframework.security.web.SecurityFilterChain;
+//
+//
+//@Configuration
+//@EnableWebSecurity
+//
+//
+//
+//@Bean
+//public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//    return http
+//            .csrf(AbstractHttpConfigurer::disable) // отключаем CSRF
+//            .authorizeHttpRequests(request -> request
+//                    .anyRequest().permitAll()           // разрешаем все запросы (временно)
+//            )
+//            .httpBasic(Customizer.withDefaults())   // включаем basic auth (логин/пароль)
+//            .sessionManagement(session -> session
+//                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // без сессий
+//            )
+//            .build();
+//}
