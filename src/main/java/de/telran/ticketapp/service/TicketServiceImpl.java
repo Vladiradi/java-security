@@ -3,9 +3,11 @@ package de.telran.ticketapp.service;
 import de.telran.ticketapp.entity.Ticket;
 import de.telran.ticketapp.exception.TicketNotFoundException;
 import de.telran.ticketapp.repository.TicketRepository;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 @Service
@@ -16,7 +18,6 @@ public class TicketServiceImpl implements TicketService{
 
     @Override
     public List<Ticket> getAll() {
-
         return ticketRepository.findAll();
     }
 
