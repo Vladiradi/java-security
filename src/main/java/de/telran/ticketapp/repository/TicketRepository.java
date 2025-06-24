@@ -1,5 +1,5 @@
 package de.telran.ticketapp.repository;
-
+import java.util.List;
 import de.telran.ticketapp.entity.Ticket;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -1,3 +1,4 @@
+/Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/exception/NoUniqueLocalUserEmailException.java
 /Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/configuration/SecurityConfig.java
 /Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/service/TicketServiceImpl.java
 /Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/service/TicketService.java
@@ -5,12 +6,17 @@
 /Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/repository/LocalUserRepository.java
 /Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/repository/TicketRepository.java
 /Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/controller/LocalUserController.java
+/Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/converter/Converter.java
+/Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/dto/UserResponceDto.java
 /Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/service/LocalUserServiceImpl.java
+/Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/dto/CreateUserRequestDto.java
 /Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/exception/TicketNotFoundException.java
+/Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/controller/AuthenticationController.java
 /Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/service/LocalUserDetailsService.java
 /Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/entity/LocalUser.java
 /Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/entity/Ticket.java
 /Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/controller/TicketController.java
 /Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/service/LocalUserDetails.java
+/Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/converter/UserConverter.java
 /Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/service/LocalUserService.java
 /Volumes/nvme/study/backend/java-security/src/main/java/de/telran/ticketapp/TicketApp.java

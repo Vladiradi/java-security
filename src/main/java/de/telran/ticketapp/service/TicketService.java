@@ -1,16 +1,19 @@
 package de.telran.ticketapp.service;
 
 import de.telran.ticketapp.entity.Ticket;
-
 import java.util.List;
 
 public interface TicketService {
 
-    List<Ticket> getAll();
+    List<Ticket> getAllTickets();               // Получить все тикеты
 
-    Ticket create(Ticket ticket);
+    Ticket createTicket(Ticket ticket);         // Создать тикет
 
-    Ticket getById(Long id);
+    Ticket getTicketById(long id);              // Получить по ID
 
-    Ticket getByTitle(String title);
+    Ticket getTicketByTitle(String title);      // Найти по заголовку
+
+    Ticket updateTicket(long id, Ticket ticket); // Обновить тикет по ID
+
+    void deleteTicketById(long id);             // Удалить тикет
 }

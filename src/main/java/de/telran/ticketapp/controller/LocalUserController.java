@@ -1,45 +1,66 @@
 package de.telran.ticketapp.controller;
+
 import de.telran.ticketapp.dto.CreateUserRequestDto;
 import de.telran.ticketapp.dto.UserResponceDto;
 import de.telran.ticketapp.entity.LocalUser;
+import de.telran.ticketapp.exception.LocalUserNotFoundException;
 import de.telran.ticketapp.service.LocalUserService;
-import de.telran.ticketapp.service.TicketService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@Component
+
 @RestController
 @RequestMapping("/users")
+@RequiredArgsConstructor
 @Slf4j
 public class LocalUserController {
 
-    @Autowired
-    private Converter<LocalUser, CreateUserRequestDto, UserResponceDto> converter;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private LocalUserService localUserService;
+    private final LocalUserService localUserService;
+    private final PasswordEncoder passwordEncoder;
+    private final Converter<LocalUser, CreateUserRequestDto, UserResponceDto> converter;
 
     @GetMapping
-    List<LocalUser> getAll() {
-        List<LocalUser> all = localUserService.getAll();
-        log.debug("List all  {}", all);
-        return all;
+    public List<UserResponceDto> getAllUsers() {
+        List<LocalUser> users = localUserService.getAll();
+        log.debug("Retrieved users: {}", users);
+        return users.stream().map(converter::convert).toList();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponceDto> getUserById(@PathVariable Long id) {
+        LocalUser user = localUserService.findById(id);
+        return ResponseEntity.ok(converter.convert(user));
+    }
+
     @PostMapping
-    UserResponceDto create(@RequestBody CreateUserRequestDto userDto) {
-        entity.setPassword(passwordEncoder.encode(userRequestDto.getPassword()));
+    public ResponseEntity<UserResponceDto> createUser(@RequestBody CreateUserRequestDto userDto) {
         LocalUser user = converter.convert(userDto);
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         LocalUser savedUser = localUserService.create(user);
-        return dto;
+        return ResponseEntity.status(HttpStatus.CREATED).body(converter.convert(savedUser));
+    }
+
+    @PutMapping
+    public ResponseEntity<UserResponceDto> updateUser(@RequestBody CreateUserRequestDto userDto) {
+        LocalUser user = converter.convert(userDto);
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        LocalUser updatedUser = localUserService.update(user);
+        return ResponseEntity.ok(converter.convert(updatedUser));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        localUserService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @ExceptionHandler(LocalUserNotFoundException.class)
+    public ResponseEntity<String> handleUserNotFound(LocalUserNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found: " + ex.getMessage());
     }
 }
