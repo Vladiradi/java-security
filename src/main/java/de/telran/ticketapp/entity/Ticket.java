@@ -1,40 +1,34 @@
 package de.telran.ticketapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import de.telran.ticketapp.service.LocalUserService;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "tickets")
 @Getter
 @Setter
 @NoArgsConstructor
-@Builder
 @AllArgsConstructor
+@Builder
+@ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Ticket {
 
-    @Id // указывает что это поле первичный ключ
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // задает автогенерацию значения поля
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
+    @Column(nullable = false)
     private String title;
 
-    private double price;
+    @Column(nullable = false)
+    private Double price;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "local_user_id")
     @JsonBackReference
+    @ToString.Exclude
     private LocalUser localUser;
 }
