@@ -7,11 +7,15 @@ import java.util.Optional;
 
 public interface LocalUserService {
 
-    List<LocalUser> getAll();
+    List<LocalUser> findAll();
 
-    LocalUser create(LocalUser localUser);
+    LocalUser findById(Long id);
 
-    LocalUser getById(Long id);
+    LocalUser save(LocalUser localUser);
 
-    Optional<LocalUser> getByEmail(String email);
+    LocalUser update(Long id, LocalUser localUser);
+
+    void deleteById(Long id);
+
+    Optional<LocalUser> findByEmail(String email);
 }

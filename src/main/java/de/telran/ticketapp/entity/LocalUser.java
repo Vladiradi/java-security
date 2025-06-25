@@ -33,6 +33,10 @@ public class LocalUser {
 
     private String postAddress;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+
     @OneToMany(mappedBy = "localUser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonManagedReference
     @ToString.Exclude

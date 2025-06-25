@@ -15,12 +15,11 @@ public class LocalUserDetailsService implements UserDetailsService {
     public LocalUserDetailsService(LocalUserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        LocalUser user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        LocalUser user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email));
         return new LocalUserDetails(user);
     }
-
 }
-
